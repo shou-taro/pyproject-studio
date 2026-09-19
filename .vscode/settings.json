@@ -1,0 +1,28 @@
+{
+  // Use Biome as the default formatter for the whole workspace.
+  "editor.defaultFormatter": "biomejs.biome",
+  // Automatically format files whenever they are saved.
+  "editor.formatOnSave": true,
+  // Run Biome's quick fixes and import organisation on every save.
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  // Explicitly pin Biome as the formatter for each language Biome supports,
+  // in case another extension registers itself as a formatter for these too.
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
+}
