@@ -5,7 +5,7 @@
   "editor.formatOnSave": true,
   // Run Biome's quick fixes and import organisation on every save.
   "editor.codeActionsOnSave": {
-    "quickfix.biome": "explicit",
+    "source.fixAll.biome": "explicit",
     "source.organizeImports.biome": "explicit"
   },
   // Explicitly pin Biome as the formatter for each language Biome supports,
