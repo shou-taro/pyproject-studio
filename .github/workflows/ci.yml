@@ -1,0 +1,39 @@
+# Continuous integration checks for the project.
+# Further jobs (e.g. typecheck, build) can be added alongside `lint` here.
+name: CI
+
+# Run on every push to main and on every pull request, so issues are caught
+# both before and after merging.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  # Lints the codebase with Biome.
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # Installs the pnpm CLI itself (separate from the Node.js toolchain).
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      # Installs Node.js and caches the pnpm store, keyed off pnpm-lock.yaml.
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # `--frozen-lockfile` fails the build if pnpm-lock.yaml is out of date,
+      # rather than silently updating it.
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Biome lint
+        run: pnpm lint
